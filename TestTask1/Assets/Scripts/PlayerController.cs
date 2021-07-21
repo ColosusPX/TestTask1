@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                _distance = hit.point;
+                _distance = hit.point + new Vector3(0, 0.5f, 0);
             }
         }
     }
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(_joystick.Horizontal, 0, _joystick.Vertical) * _speed * Time.fixedDeltaTime;
             _distance = Vector3.zero;
         }
-        else if(_distance != Vector3.zero && (_distance - transform.position).magnitude > .7f)
+        else if(_distance != Vector3.zero && (_distance - transform.position).magnitude > .2f)
         {
             transform.position += (_distance - transform.position).normalized * _speed * Time.fixedDeltaTime;
         }
